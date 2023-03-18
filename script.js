@@ -5,7 +5,15 @@ const redirectUri = "https://mvigo.github.io/1song/";
 let accessToken = "";
 
 async function getAccessToken() {
-  const authUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&redirect_uri=${encodeURIComponent(redirectUri)}&scope=playlist-read-private`;
+  const authUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&redirect_uri=${encodeURIComponent(redirectUri)}&scope=playlist-read-collaborative`;
+
+  if (window.location.hash) {
+    const tokenMatch = window.location.hash.match(/#access_token=([^&]*)/);
+    accessToken = tokenMatch ? tokenMatch[1] : "";
+  } else {
+    window.location.href = authUrl;
+  }
+}
 
   if (window.location.hash) {
     const tokenMatch = window.location.hash.match(/#access_token=([^&]*)/);
