@@ -5,7 +5,7 @@ const redirectUri = "https://mvigo.github.io/1song/";
 let accessToken = "";
 
 async function getAccessToken() {
-  const authUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&redirect_uri=${encodeURIComponent(redirectUri)}&scope=playlist-read-collaborative`;
+  const authUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&redirect_uri=${encodeURIComponent(redirectUri)}&scope=playlist-read-private`;
 
   if (window.location.hash) {
     const tokenMatch = window.location.hash.match(/#access_token=([^&]*)/);
@@ -29,6 +29,11 @@ async function getPlaylistTracks() {
       "Authorization": `Bearer ${accessToken}`
     }
   });
+
+  if (!response.ok) {
+    console.error(`Error fetching playlist tracks: ${response.status} ${response.statusText}`);
+    return [];
+  }
 
   const data = await response.json();
   return data.items;
