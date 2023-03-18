@@ -15,6 +15,7 @@ async function getAccessToken() {
   }
 }
 
+
   if (window.location.hash) {
     const tokenMatch = window.location.hash.match(/#access_token=([^&]*)/);
     accessToken = tokenMatch ? tokenMatch[1] : "";
