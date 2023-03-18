@@ -16,14 +16,6 @@ async function getAccessToken() {
 }
 
 
-  if (window.location.hash) {
-    const tokenMatch = window.location.hash.match(/#access_token=([^&]*)/);
-    accessToken = tokenMatch ? tokenMatch[1] : "";
-  } else {
-    window.location.href = authUrl;
-  }
-}
-
 async function getPlaylistTracks() {
   const response = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
     headers: {
