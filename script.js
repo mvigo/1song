@@ -4,7 +4,7 @@ const playlistId = "6MlFZUBSYEQvM0gnqiDMpa?si=bde24c72cc384221";
 let accessToken = "";
 
 async function getAccessToken() {
-  const authUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&redirect_uri=https://mvigo.github.io/1song/${encodeURIComponent(window.location.origin)}&scope=playlist-read-private`;
+  const authUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&redirect_uri=https://mvigo.github.io/1song/${encodeURIComponent(redirectUri)}&scope=playlist-read-private`;
 
   if (window.location.hash) {
     const tokenMatch = window.location.hash.match(/#access_token=([^&]*)/);
